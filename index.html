@@ -182,21 +182,27 @@
         let sim;
 
         function render(count, x1, x2) {
-            counter.innerText = count;
-
+            let countStr = count.toString();
+            
+            if (countStr.length > 1) {
+                countStr = countStr.charAt(0) + ',' + countStr.slice(1);
+            }
+        
+            counter.innerText = countStr;
+        
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+        
             // ground line
             ctx.strokeStyle = "#999";
             ctx.beginPath();
             ctx.moveTo(0, canvas.height - 1);
             ctx.lineTo(canvas.width, canvas.height - 1);
             ctx.stroke();
-
+        
             // small block
             ctx.fillStyle = "#444";
             ctx.fillRect(x1, canvas.height - 40, 40, 40);
-
+        
             // large block
             ctx.fillStyle = "#888";
             ctx.fillRect(x2, canvas.height - 100, 100, 100);
